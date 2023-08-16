@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * main - entry point
+ *
+ * Return: void
+ */
 int main(void)
 {
 	char *buffer;
@@ -12,9 +17,8 @@ int main(void)
 		perror("Error");
 		return (1);
 	}
-	
 	printf("$ ");
-	while(getline(&buffer, &buffer_size, stdin))
+	while (getline(&buffer, &buffer_size, stdin))
 	{
 		run_shell(buffer);
 	}
