@@ -17,11 +17,13 @@ int main(void)
 		perror("Error");
 		return (1);
 	}
-	printf("$ ");
-	while (getline(&buffer, &buffer_size, stdin))
-	{
+
+	do {
+		printf("from before shell - $ ");
 		run_shell(buffer);
 	}
+	while (getline(&buffer, &buffer_size, stdin) != EOF);
 
 	free(buffer);
+	return (0);
 }
