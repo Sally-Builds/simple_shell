@@ -18,11 +18,19 @@ int main(void)
 		return (1);
 	}
 
-	do {
-		printf("from before shell - $ ");
-		run_shell(buffer);
+	while (true)
+	{
+		printf("#cisfun$ ");
+
+		if (getline(&buffer, &buffer_size, stdin) != -1)
+		{
+			run_shell(buffer);
+		}
+		else
+		{
+			return (1);
+		}
 	}
-	while (getline(&buffer, &buffer_size, stdin) != EOF);
 
 	free(buffer);
 	return (0);
