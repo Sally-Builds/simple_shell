@@ -6,14 +6,9 @@
  *
  * Return: void
  */
-void run_shell(char *buffer)
+void run_shell(char **argv)
 {
 	pid_t child_pid = fork();
-	char *ch = strtok(buffer, "\n");
-	char *argv[2];
-
-	argv[0] = ch;
-	argv[1] = NULL;
 
 	if (child_pid == -1)
 	{

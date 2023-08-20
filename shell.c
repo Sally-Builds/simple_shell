@@ -8,9 +8,11 @@
 int main(void)
 {
 	char *buffer;
+	char **argv;
 	size_t buffer_size = 32;
 
 	buffer = (char *)malloc(buffer_size * sizeof(char));
+	argv = (char **)malloc(buffer_size * sizeof(char));
 
 	if (buffer == NULL)
 	{
@@ -24,7 +26,8 @@ int main(void)
 
 		if (getline(&buffer, &buffer_size, stdin) != -1)
 		{
-			run_shell(buffer);
+			set_argv(buffer, argv);
+			run_shell(argv);
 		}
 		else
 		{
@@ -33,5 +36,6 @@ int main(void)
 	}
 
 	free(buffer);
+	free(argv);
 	return (0);
 }
