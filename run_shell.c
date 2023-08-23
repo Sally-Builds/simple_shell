@@ -7,6 +7,9 @@ void run_shell(char **argv)
 {
 	pid_t child_pid = fork();
 
+	if (child_pid == -1)
+		return (0);
+
 	if (child_pid == 0)
 	{
 		execute_command(argv);
