@@ -3,7 +3,7 @@
  * execute_command - function to execute the users inputted command
  * @argv: users inputted command
  */
-void execute_command(char **argv)
+void exec_cmd(char **argv)
 {
 	if (*argv[0] == '\0')
 		exit(1);

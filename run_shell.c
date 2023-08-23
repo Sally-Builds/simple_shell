@@ -3,7 +3,7 @@
  * run_shell - function to create a child process and execute command
  * @argv: users inputted command
  */
-void run_shell(char **argv)
+void run_sh(char **argv)
 {
 	pid_t child_pid = fork();
 
@@ -12,7 +12,7 @@ void run_shell(char **argv)
 
 	if (child_pid == 0)
 	{
-		execute_command(argv);
+		exec_cmd(argv);
 	}
 	else
 	{

@@ -11,10 +11,10 @@
 
 extern char **environ;
 
-void run_shell(char **argv);
-void execute_command(char **argv);
-int total_len_of_string(char *s, char *delim);
-void store_token_in_array(char **argv, char *s, char *delim);
-char *_getenv(char *name);
+char *read_input();
+char **split_command(char *buffer);
+int get_len_of_argv(char *buff_dup, char *delim);
+void run_sh(char **argv);
+void exec_cmd(char **argv);
 #endif
 
