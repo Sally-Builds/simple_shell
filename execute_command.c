@@ -12,7 +12,7 @@ void execute_command(char **argv)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
 		{
-			perror(argv[0]);
+			perror("./shell");
 			exit(1);
 		}
 	}
