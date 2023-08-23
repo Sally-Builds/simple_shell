@@ -10,7 +10,7 @@ void execute_command(char **argv)
 
 	if (argv)
 	{
-		if (execve(argv[0], NULL, NULL) == -1)
+		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror(argv[0]);
 			exit(1);
