@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * run_shell - function to create a child process and execute command
+ * run_sh - function to create a child process and execute command
  * @argv: users inputted command
  */
 void run_sh(char **argv)

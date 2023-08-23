@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * execute_command - function to execute the users inputted command
+ * exec_cmd - function to execute the users inputted command
  * @argv: users inputted command
  */
 void exec_cmd(char **argv)

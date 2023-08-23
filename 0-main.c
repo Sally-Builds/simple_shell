@@ -7,6 +7,7 @@ int main(void)
 {
 	char *buffer;
 	char **argv;
+
 	while (true)
 	{
 		printf("#cisfun$ ");
