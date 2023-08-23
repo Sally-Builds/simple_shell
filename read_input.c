@@ -8,7 +8,7 @@ char *read_input()
 {
 	char *buffer = NULL;
 	size_t buffer_size = 0;
-	size_t buffer_length;
+	int buffer_length;
 
 	buffer_length = getline(&buffer, &buffer_size, stdin);
 

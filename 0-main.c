@@ -5,15 +5,17 @@
  */
 int main(void)
 {
+	char *buffer;
+	char **argv;
 	while (true)
 	{
 		printf("#cisfun$ ");
 
-		char *buffer = read_input();
+		buffer = read_input();
 
 		if (buffer == NULL)
 			return (1);
-		char **argv = split_command(buffer);
+		argv = split_command(buffer);
 
 		if (argv[0] != NULL)
 			run_sh(argv);
