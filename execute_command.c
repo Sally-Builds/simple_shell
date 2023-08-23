@@ -10,7 +10,7 @@ void execute_command(char **argv)
 
 	if (argv)
 	{
-		if (execve(argv[0], argv, NULL) == -1)
+		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("./shell");
 			exit(1);

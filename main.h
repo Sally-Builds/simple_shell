@@ -8,6 +8,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+
+extern char **environ;
+
 void run_shell(char **argv);
 void execute_command(char **argv);
 int total_len_of_string(char *s, char *delim);
