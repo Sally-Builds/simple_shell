@@ -1,9 +1,11 @@
 #include "main.h"
 /**
  * main - simple shell
+ * @argc: number of argument
+ * @argvs: variable number of argument
  * Return: 0 or 1
  */
-int main(void)
+int main(int argc, char *argvs[])
 {
 	char *buffer = NULL;
 	char *buffer_copy;
@@ -13,6 +15,8 @@ int main(void)
 	char **argv;
 	int len_of_argv;
 
+	(void)argc;
+	(void)argvs;
 	while (true)
 	{
 		printf("#cisfun$ ");
