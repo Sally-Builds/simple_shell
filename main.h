@@ -9,7 +9,9 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 void run_shell(char **argv);
-int set_argv(char *buffer, char**argv);
-
+void execute_command(char **argv);
+int total_len_of_string(char *s, char *delim);
+void store_token_in_array(char **argv, char *s, char *delim);
+char *_getenv(char *name);
 #endif
 
