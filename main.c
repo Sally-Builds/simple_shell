@@ -1,12 +1,12 @@
 #include "main.h"
 
-char **g_commands = NULL;
+	char **g_commands = NULL;
 
-char *g_line = NULL;
+	char *g_line = NULL;
 
-char *g_shell_name = NULL;
+	char *g_shell_name = NULL;
 
-int g_status = 0;
+	int g_status = 0;
 
 int main(int argc __attribute__((unused)), char **argv)
 {
@@ -93,17 +93,17 @@ for (; token != NULL; num_delim++)
 }
 
 
-
-void print(char *string, int stream)
-
+void remove_comment(char *input)
 {
-
     int i = 0;
 
-
-
-    for (; string[i] != '\0'; i++)
-
-        write(stream, &string[i], 1);
-
+    if (input[i] == '#')
+        input[i] = '\0';
+    while (input[i] != '\0')
+    {
+        if (input[i] == '#' && input[i - 1] == ' ')
+            break;
+        i++;
+    }
+    input[i] = '\0';
 }
