@@ -1,5 +1,12 @@
 #include "main.h"
 
+char **g_commands = NULL;
+
+char *g_line = NULL;
+
+char *g_shell_name = NULL;
+
+int g_status = 0;
 
 int main(int argc __attribute__((unused)), char **argv)
 {

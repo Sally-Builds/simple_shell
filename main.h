@@ -22,10 +22,10 @@ typedef struct {
 } function_map;
 
 extern char **environ;
-char **g_commands = NULL;
-char *g_line = NULL;
-char *g_shell_name = NULL;
-int g_status = 0;
+extern char **g_commands;
+extern char *g_line;
+extern char *g_shell_name;
+extern int g_status;
 
 char **tokenizer(char *input_string, char *delim);
 void print(char *string, int stream);
