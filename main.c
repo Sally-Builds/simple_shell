@@ -42,3 +42,61 @@ int main(int argc __attribute__((unused)), char **argv)
 
     return (g_status);
 }
+
+char **tokenizer(char *input_string, char *delim)
+
+{
+
+    int num_delim = 0;
+
+    char **av = NULL;
+
+    char *token = NULL;
+
+    char *save_ptr = NULL;
+
+
+
+    token = _strtok_r(input_string, delim, &save_ptr);
+
+
+
+for (; token != NULL; num_delim++)
+
+    {
+
+        av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
+
+        av[num_delim] = token;
+
+        token = _strtok_r(NULL, delim, &save_ptr);
+
+    }
+
+
+
+    av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
+
+    av[num_delim] = NULL;
+
+
+
+    return (av);
+
+}
+
+
+
+void print(char *string, int stream)
+
+{
+
+    int i = 0;
+
+
+
+    for (; string[i] != '\0'; i++)
+
+        write(stream, &string[i], 1);
+
+}
