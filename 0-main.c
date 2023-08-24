@@ -22,7 +22,7 @@ int main(void)
 			run_sh(argv);
 
 		free(buffer);
-		free(argv);
+		free_argv(argv);
 	}
 	return (0);
 }
