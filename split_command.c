@@ -1,4 +1,9 @@
 #include "main.h"
+
+char **split_command(char *buffer);
+char **split_tokens(char *buffer_duplicate, const char *delim);
+void allocate_memory_for_argv(char ***argv, int size);
+void free_argv(char **argv);
 /**
  * split_command - split buffer into argv
  * @buffer: input buffer to split
@@ -7,32 +12,69 @@
  */
 char **split_command(char *buffer)
 {
-	char *token;
-	char *delim = " \n";
-	int i = 0;
-	char **argv;
+	const char *delim = " \n";
 	char *buffer_duplicate;
-	int len_of_argv = 0;
+	char **argv;
 
-	buffer_duplicate = malloc(sizeof(char *) * strlen(buffer));
 	buffer_duplicate = strdup(buffer);
+	if (buffer_duplicate == NULL)
+	{
+		perror("Memory allocation error");
+		exit(1);
+	}
 
-	len_of_argv = get_len_of_argv(buffer_duplicate, delim);
-	printf("%s \n", buffer_duplicate);
-	printf("%s \n", buffer);
-	argv = malloc(sizeof(char *) * len_of_argv);
+	argv = split_tokens(buffer_duplicate, delim);
 
-	token = strtok(buffer, delim);
+	free(buffer_duplicate);
+	return (argv);
+}
+
+/**
+ * split_tokens - splts token
+ * @buffer_duplicate: buffer to split
+ * @delim: delimeter
+ *
+ * Return: split array
+ */
+char **split_tokens(char *buffer_duplicate, const char *delim)
+{
+	char *token;
+	int i = 0;
+	char **argv = NULL;
+
+	token = strtok(buffer_duplicate, delim);
 
 	while (token != NULL)
 	{
-		argv[i] = malloc(sizeof(char) * strlen(token));
-		argv[i] = token;
+		allocate_memory_for_argv(&argv, i + 1);
+		argv[i] = strdup(token);
+		if (argv[i] == NULL)
+		{
+			perror("Memory allocation error");
+			exit(1);
+		}
 		i++;
 
 		token = strtok(NULL, delim);
 	}
+
+	allocate_memory_for_argv(&argv, i + 1);
 	argv[i] = NULL;
 
 	return (argv);
+}
+
+/**
+ * allocate_memory_for_argv - memory allocation for argv
+ * @argv: argv
+ * @size: size of argv
+ */
+void allocate_memory_for_argv(char ***argv, int size)
+{
+	*argv = realloc(*argv, size * sizeof(char *));
+	if (*argv == NULL)
+	{
+		perror("Memory allocation error");
+		exit(1);
+	}
 }
