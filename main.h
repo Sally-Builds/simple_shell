@@ -16,5 +16,7 @@ char **split_command(char *buffer);
 int get_len_of_argv(char *buff_dup, char *delim);
 void run_sh(char **argv);
 void exec_cmd(char **argv);
+void free_argv(char **argv);
+
 #endif
 

@@ -18,7 +18,8 @@ char **split_command(char *buffer)
 	buffer_duplicate = strdup(buffer);
 
 	len_of_argv = get_len_of_argv(buffer_duplicate, delim);
-
+	printf("%s \n", buffer_duplicate);
+	printf("%s \n", buffer);
 	argv = malloc(sizeof(char *) * len_of_argv);
 
 	token = strtok(buffer, delim);
