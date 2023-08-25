@@ -11,17 +11,20 @@ char *check_path(char *command)
 	char **path_array = NULL;
 	char *temp, *temp2, *path_cpy;
 	char *path = _getenv("PATH");
-	int i;
+	int i = 0;
 
 	if (path == NULL || _strlen(path) == 0)
 		return (NULL);
+
 	path_cpy = malloc(sizeof(*path_cpy) * (_strlen(path) + 1));
 	_strcpy(path, path_cpy);
-	path_array = tokenizer(path_cpy, ":");
-	for (i = 0; path_array[i] != NULL; i++)
+	path_array = get_token(path_cpy, ":");
+
+	while (path_array[i] != NULL)
 	{
 		temp2 = _strcat(path_array[i], "/");
 		temp = _strcat(temp2, command);
+
 		if (access(temp, F_OK) == 0)
 		{
 			free(temp2);
@@ -29,9 +32,12 @@ char *check_path(char *command)
 			free(path_cpy);
 			return (temp);
 		}
+
 		free(temp);
 		free(temp2);
+		i++;  /** Increment i in each iteration*/
 	}
+
 	free(path_cpy);
 	free(path_array);
 	return (NULL);
@@ -44,20 +50,31 @@ char *check_path(char *command)
  */
 char *_getenv(char *name)
 {
-	char **my_environ;
-	char *pair_ptr;
+
+	char *p_ptr;
+	char **dup_environ;
 	char *name_cpy;
 
-	for (my_environ = environ; *my_environ != NULL; my_environ++)
+	dup_environ = environ;
+	while (*dup_environ != NULL)
 	{
-		for (pair_ptr = *my_environ, name_cpy = name;
-				*pair_ptr == *name_cpy; pair_ptr++, name_cpy++)
+		p_ptr = *dup_environ;
+		name_cpy = name;
+
+		while (*p_ptr == *name_cpy)
 		{
-			if (*pair_ptr == '=')
+			if (*p_ptr == '=')
 				break;
+
+			p_ptr++;
+			name_cpy++;
 		}
-		if ((*pair_ptr == '=') && (*name_cpy == '\0'))
-			return (pair_ptr + 1);
+
+		if ((*p_ptr == '=') && (*name_cpy == '\0'))
+			return (p_ptr + 1);
+
+		dup_environ++;
 	}
+
 	return (NULL);
 }

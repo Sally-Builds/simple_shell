@@ -60,7 +60,7 @@ void execute_command(char **tokenized_command, int command_type)
 	}
 	if (command_type == INTERNAL_COMMAND)
 	{
-		func = get_func(tokenized_command[0]);
+		func = run_function(tokenized_command[0]);
 		func(tokenized_command);
 	}
 	if (command_type == INVALID_COMMAND)

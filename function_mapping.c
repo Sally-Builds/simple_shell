@@ -1,33 +1,25 @@
 #include "main.h"
 
 /**
- * get_func -  get function for built-in command
+ * run_function -  get function for built-in command
  * @command: cmd
  *
  * Return: pointer to the function of the command found or NULL
  */
-void (*get_func(char *command))(char **)
+void (*run_function(char *command))(char **)
 {
-	int i;
-
+	int i = 0;
 	function_map mapping[] = {
-
 		{"env", env}, {"exit", quit}
-
 	};
 
-
-
-	for (i = 0; i < 2; i++)
-
+	while (i < 2)
 	{
-
 		if (_strcmp(command, mapping[i].command_name) == 0)
-
 			return (mapping[i].func);
 
+		i++;
 	}
 
 	return (NULL);
-
 }

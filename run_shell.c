@@ -5,7 +5,7 @@
  * @current_command: - command to run
  * @type_command: type of command to run
  */
-void initializer(char **current_command, int type_command)
+void create_child(char **current_command, int type_command)
 {
 	pid_t PID;
 
