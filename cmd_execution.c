@@ -46,7 +46,7 @@ void execute_command(char **tokenized_command, int command_type)
 	{
 		if (execve(tokenized_command[0], tokenized_command, NULL) == -1)
 		{
-			perror(_getenv("PWD"));
+			perror(tokenized_command[0]);
 			exit(2);
 		}
 	}
@@ -54,7 +54,7 @@ void execute_command(char **tokenized_command, int command_type)
 	{
 		if (execve(check_path(tokenized_command[0]), tokenized_command, NULL) == -1)
 		{
-			perror(_getenv("PWD"));
+			perror(tokenized_command[0]);
 			exit(2);
 		}
 	}
@@ -65,10 +65,8 @@ void execute_command(char **tokenized_command, int command_type)
 	}
 	if (command_type == INVALID_COMMAND)
 	{
-		print(g_shell_name, STDERR_FILENO);
-		print(": 1: ", STDERR_FILENO);
 		print(tokenized_command[0], STDERR_FILENO);
-		print(": not found\n", STDERR_FILENO);
+		print(": no such file or directory\n", STDERR_FILENO);
 		g_status = 127;
 	}
 }
